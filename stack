@@ -1,0 +1,29 @@
+class MyStack:
+    def __init__(self):
+        self.stack = []
+        
+      def __len__(self):
+        return len(self.stack)
+
+    def __repr__(self):
+        return self.stack    
+
+    def pop(self):
+        return self.pop()
+
+    def push(self, item):
+        self.stack.append(item)
+
+    def size(self):
+        return len(self.stack)
+
+    def peek(self):
+        if len(self.stack) > 0:
+            return self.stack[-1]
+        else:
+            return None
+
+    def show(self):
+        return self.stack
+
+  
