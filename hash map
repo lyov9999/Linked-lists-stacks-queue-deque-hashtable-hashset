@@ -1,0 +1,51 @@
+class Node:
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
+
+
+class MyHashMap:
+    def __init__(self):
+        self.store = [None for _ in range(16)]
+        self.size = 0
+
+    def __getitem__(self, key):
+        hash_key = self._hash(key)
+        index = self.pos(hash_key)
+        if not self.store[index]:
+            return None
+        else:
+            indexlist = self.store[index]
+            for i in indexlist:
+                if i.key == key:
+                    return i.value
+            return None
+
+    def __setitem__(self, key, value):
+        p = Node(key, value)
+        hash_key = self._hash(key)
+        index = self.pos(hash_key)
+        if not self.store[index]:
+            self.store[index] = [p]
+            self.size += 1
+        else:
+            indexlist = self.store[index]
+            if p not in indexlist:
+                indexlist.append(p)
+                self.size += 1
+            else:
+                for i in indexlist:
+                    if i == p:
+                        i.value = value
+                        break
+
+    def __len__(self):
+        return self.size
+
+    def _hash(self, key):
+        multiplication = 1
+        result = 0
+        for character in key:
+            result += multiplication * ord(character)
+            multiplication += 1
+        return result % self.size
