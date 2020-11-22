@@ -1,0 +1,17 @@
+class MyQueue:
+    def __init__(self):
+        self._queue = []
+        self.size = 0
+        self.maxsize = 5
+
+    def enqueue(self, item):
+        if self.size < self.maxsize:
+            self._queue.append(item)
+
+    def dequeue(self):
+        first = self._queue[0]
+        del self._queue[0]
+        return first
+
+    def __repr__(self):
+        return self._queue
